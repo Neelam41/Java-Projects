@@ -1,0 +1,45 @@
+Problem1-- Duplicate users were being inserted even though a unique constraint existed on email.
+EXCEPTION generated----org.hibernate.exception.ConstraintViolationException: could not execute statement
+
+Caused by trying to insert duplicate email through POSTman Post API.
+solve duplicate check manually
+add -Optional<User> existing = userRepository.findByEmail(user.getEmail());
+         if (existing.isPresent()) {
+             throw new CustomException("Email already exists!");
+         }
+         return userRepository.save(user);
+
+
+Problem2--NullPointerException while Updating User which doesnot exist
+change code and throw exception when not found
+
+
+Push It to GitHub
+1. Open Project in IntelliJ
+Extract the ZIP and open the folder in IntelliJ IDEA.
+
+IntelliJ will auto-import the Maven project.
+
+2. Create Git Repository
+Go to VCS > Enable Version Control Integration → Select Git
+
+3. Commit the Project
+Go to VCS > Commit...
+
+Write a commit message like: Initial commit
+
+Click Commit (or Commit and Push if GitHub is connected)
+
+4. Create GitHub Repository
+Go to GitHub → Click New → Enter repo name (e.g., springboot-crud-user) → Create repo
+
+5. Push to GitHub
+In IntelliJ terminal:
+
+bash
+Copy
+Edit
+git remote add origin https://github.com/YOUR_USERNAME/springboot-crud-user.git
+git branch -M main
+git push -u origin main
+
